@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import { Show, SignInButton, UserProfile } from '@clerk/nextjs'
+import { Show, SignInButton, UserButton } from '@clerk/nextjs'
 
 import React from 'react'
 
@@ -14,9 +14,9 @@ const page = () => {
       </Show>
 
       <Show when={"signed-in"}>
-  <Button>
-    <UserProfile/>
-  </Button>
+      
+          <UserButton />
+    
       </Show>
     </div>
   )
