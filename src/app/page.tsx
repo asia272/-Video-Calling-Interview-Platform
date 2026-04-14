@@ -1,11 +1,9 @@
-import { Button } from '@/components/ui/button'
-import { Show, SignInButton, UserButton } from '@clerk/nextjs'
 
 
 const page = () => {
   return (
     <div>
-
+      My home page is here.
     </div>
   )
 }
