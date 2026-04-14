@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { RedirectToSignIn, Show } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -40,10 +41,15 @@ export default function RootLayout({
           <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
           >
-            <div className="min-h-screen">
-              <Navbar />
-              <main className="px-4 sm:px-6 lg:px-8">{children}</main>
-            </div>
+            <Show when={"signed-in"}>
+              <div className="min-h-screen">
+                <Navbar />
+                <main className="px-4 sm:px-6 lg:px-8">{children}</main>
+              </div>
+            </Show>
+            <Show when={"signed-out"}>
+              <RedirectToSignIn/>
+            </Show>
           </body>
         </ThemeProvider>
       </html>

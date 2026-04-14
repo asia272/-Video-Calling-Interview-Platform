@@ -6,17 +6,6 @@ const page = () => {
   return (
     <div>
 
-      <Show when={"signed-out"}>
-        <Button>
-          <SignInButton />
-        </Button>
-      </Show>
-
-      <Show when={"signed-in"}>
-      
-          <UserButton />
-    
-      </Show>
     </div>
   )
 }
