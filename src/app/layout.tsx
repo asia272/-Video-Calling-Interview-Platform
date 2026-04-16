@@ -1,11 +1,11 @@
-import Navbar from "@/components/Navbar";
+
 import ConvexClerkProvider from "@/components/providers/ConvexClerkProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import Navbar from "@/components/Navbar";
 import { RedirectToSignIn, Show } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
-
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 const geistSans = Geist({
@@ -42,12 +42,15 @@ export default function RootLayout({
           >
             <Show when={"signed-in"}>
               <div className="min-h-screen">
+                {/* <Navbar /> */}
                 <Navbar />
+
                 <main className="px-4 sm:px-6 lg:px-8">{children}</main>
               </div>
             </Show>
+            Hello this is me asia ashraf
             <Show when={"signed-out"}>
-              <RedirectToSignIn/>
+              <RedirectToSignIn />
             </Show>
           </body>
         </ThemeProvider>

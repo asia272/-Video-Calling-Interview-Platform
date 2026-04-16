@@ -24,7 +24,7 @@ name:v.string(),
     }
  
 });
-
+// get all user
 export const getUsers = query({
     handler: async (ctx) => {
         const identity = ctx.auth.getUserIdentity();
