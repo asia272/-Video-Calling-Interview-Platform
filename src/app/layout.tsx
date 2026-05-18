@@ -44,11 +44,10 @@ export default function RootLayout({
               <div className="min-h-screen">
                 {/* <Navbar /> */}
                 <Navbar />
-
                 <main className="px-4 sm:px-6 lg:px-8">{children}</main>
               </div>
             </Show>
-            Hello this is me asia ashraf
+
             <Show when={"signed-out"}>
               <RedirectToSignIn />
             </Show>

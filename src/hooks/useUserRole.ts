@@ -9,6 +9,7 @@ export const useUserRole = () => {
         clerkId: user?.id || "",
     })
 
+
     return {
         isLoading: userData === undefined,
         isInterviewer: userData?.role === "interviewer",

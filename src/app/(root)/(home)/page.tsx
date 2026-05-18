@@ -3,15 +3,33 @@ import { QUICK_ACTIONS } from "@/app/constants";
 import ActionCard from "@/components/ActionCard";
 import { useUserRole } from "@/hooks/useUserRole";
 import { action } from '../../../../convex/_generated/server';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import MeetingModal from "@/components/MeetingModal";
 
 
 
 const Home = () => {
+  const router = useRouter()
   const { isInterviewer, isCandidate } = useUserRole()
-  
-  const handleQuickAction = (title:string) => {
-  
-}
+
+  const [showModal, setShowModal] = useState(false)
+  const [modalType, setModalType] = useState<"start" | "join">();
+
+  const handleQuickAction = (title: string) => {
+    switch (title) {
+      case "New Call":
+        setModalType("start");
+        setShowModal(true);
+        break;
+      case "Join Interview":
+        setModalType("join")
+        setShowModal(true);
+        break;
+      default:
+        router.push(`/${title.toLocaleLowerCase()}`)
+    }
+  }
 
   return (
     <div className="container max-w-7xl mx-auto p-6">
@@ -26,9 +44,9 @@ const Home = () => {
             : "Access your upcoming interviews and preparations"}
         </p>
       </div>
-      {isInterviewer ? (
+      {true ? (
         <>
-          <div className="grid sm:col-span-2 lg:col-span-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {QUICK_ACTIONS.map((action) => (
               <ActionCard
                 key={action.title}
@@ -37,6 +55,12 @@ const Home = () => {
               />
             ))}
           </div>
+          <MeetingModal
+            isOpen={showModal}
+            onClose={() => setShowModal(false)}
+            title={modalType == "join" ? "Join Meeting" : "Start Meeting"}
+            isJoinMeeting={modalType === "join"}
+          />
         </>
       ) : (
         <>
