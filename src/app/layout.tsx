@@ -6,6 +6,7 @@ import { RedirectToSignIn, Show } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 const geistSans = Geist({
@@ -53,6 +54,7 @@ export default function RootLayout({
             </Show>
           </body>
         </ThemeProvider>
+        <Toaster />
       </html>
     </ConvexClerkProvider>
   );
