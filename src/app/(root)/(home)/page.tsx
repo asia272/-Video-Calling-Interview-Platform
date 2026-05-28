@@ -5,12 +5,13 @@ import { useUserRole } from "@/hooks/useUserRole";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import MeetingModal from "@/components/MeetingModal";
+import LoaderUI from "@/components/LoaderUI";
 
 
 
 const Home = () => {
   const router = useRouter()
-  const { isInterviewer, isCandidate } = useUserRole()
+  const { isInterviewer, isCandidate, isLoading } = useUserRole()
 
   const [showModal, setShowModal] = useState(false)
   const [modalType, setModalType] = useState<"start" | "join">();
@@ -29,7 +30,7 @@ const Home = () => {
         router.push(`/${title.toLocaleLowerCase()}`)
     }
   }
-
+  if (isLoading) return <LoaderUI />
   return (
     <div className="container max-w-7xl mx-auto p-6">
       {/* Well-Come Section */}
