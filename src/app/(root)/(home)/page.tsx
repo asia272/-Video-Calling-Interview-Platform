@@ -2,7 +2,6 @@
 import { QUICK_ACTIONS } from "@/app/constants";
 import ActionCard from "@/components/ActionCard";
 import { useUserRole } from "@/hooks/useUserRole";
-import { action } from '../../../../convex/_generated/server';
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import MeetingModal from "@/components/MeetingModal";

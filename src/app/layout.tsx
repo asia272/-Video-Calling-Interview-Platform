@@ -5,7 +5,9 @@ import Navbar from "@/components/Navbar";
 import { RedirectToSignIn, Show } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
+import "@stream-io/video-react-sdk/dist/css/styles.css";
 import "./globals.css";
+
 import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
