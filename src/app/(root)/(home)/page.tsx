@@ -30,7 +30,7 @@ const Home = () => {
         router.push(`/${title.toLocaleLowerCase()}`)
     }
   }
-  if (isLoading) return <LoaderUI />
+  // if (isLoading) return <LoaderUI />
   return (
     <div className="container max-w-7xl mx-auto p-6">
       {/* Well-Come Section */}
