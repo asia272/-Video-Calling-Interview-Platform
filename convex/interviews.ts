@@ -12,8 +12,6 @@ export const getAllInterviews = query({
         }
 
 
-
-
         const interviews = await ctx.db.query("interviews").collect();
 
         return interviews;

@@ -26,6 +26,7 @@ import { Loader2Icon, XIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { TIME_SLOTS } from "@/app/constants";
 import { api } from "../../convex/_generated/api";
+import MeetingCard from "./MeetingCard";
 // import MeetingCard from "@/components/MeetingCard";
 
 function InterviewScheduleUI() {
@@ -34,10 +35,12 @@ function InterviewScheduleUI() {
     const [open, setOpen] = useState(false);
     const [isCreating, setIsCreating] = useState(false);
 
-    const interviews = useQuery(api.interviews.getAllInterviews) ?? [];
+
     const users = useQuery(api.users.getUsers) ?? [];
 
-    const createInterview = useMutation(api.interviews.createInterview);
+    const interviews = useQuery(api.interviews.getAllInterviews);//Get All interview
+    const createInterview = useMutation(api.interviews.createInterview);//Create a interview
+
 
     const candidates = users?.filter((u) => u.role === "candidate");
     const interviewers = users?.filter((u) => u.role === "interviewer");
@@ -197,7 +200,7 @@ function InterviewScheduleUI() {
                                     value={formData.candidateId}
                                     onValueChange={addCandidate}
                                 >
-                                    <SelectTrigger>
+                                    <SelectTrigger className="w-full">
                                         <SelectValue placeholder="Select candidate" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -236,7 +239,7 @@ function InterviewScheduleUI() {
                                 {/* Select availble interviewers */}
                                 {availableInterviewers.length > 0 && (
                                     <Select onValueChange={addInterviewer}>
-                                        <SelectTrigger>
+                                        <SelectTrigger className="w-full">
                                             <SelectValue placeholder="Add interviewer" />
                                         </SelectTrigger>
                                         <SelectContent>
@@ -308,7 +311,7 @@ function InterviewScheduleUI() {
             </div>
 
             {/* LOADING STATE & MEETING CARDS */}
-            {/* {!interviews ? (
+            {!interviews ? (
                 <div className="flex justify-center py-12">
                     <Loader2Icon className="size-8 animate-spin text-muted-foreground" />
                 </div>
@@ -322,7 +325,7 @@ function InterviewScheduleUI() {
                 </div>
             ) : (
                 <div className="text-center py-12 text-muted-foreground">No interviews scheduled</div>
-            )} */}
+            )}
         </div>
     );
 }
