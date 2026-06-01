@@ -54,7 +54,7 @@ http.route({
       const name = `${first_name || ""} ${last_name || ""}`.trim();
 
       try {
-        await ctx.runMutation(api.user.syncUser, {
+        await ctx.runMutation(api.users.syncUser, {
           clerkId: id,
           email,
           name,

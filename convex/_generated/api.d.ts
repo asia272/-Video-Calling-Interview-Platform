@@ -11,7 +11,7 @@
 import type * as comment from "../comment.js";
 import type * as http from "../http.js";
 import type * as interviews from "../interviews.js";
-import type * as user from "../user.js";
+import type * as users from "../users.js";
 
 import type {
   ApiFromModules,
@@ -23,7 +23,7 @@ declare const fullApi: ApiFromModules<{
   comment: typeof comment;
   http: typeof http;
   interviews: typeof interviews;
-  user: typeof user;
+  users: typeof users;
 }>;
 
 /**

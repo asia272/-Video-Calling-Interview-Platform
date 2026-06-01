@@ -35,7 +35,8 @@ function InterviewScheduleUI() {
     const [isCreating, setIsCreating] = useState(false);
 
     const interviews = useQuery(api.interviews.getAllInterviews) ?? [];
-    const users = useQuery(api.user.getUsers) ?? [];
+    const users = useQuery(api.users.getUsers) ?? [];
+
     const createInterview = useMutation(api.interviews.createInterview);
 
     const candidates = users?.filter((u) => u.role === "candidate");
@@ -50,6 +51,8 @@ function InterviewScheduleUI() {
         interviewerIds: user?.id ? [user.id] : [],
     });
 
+
+    //Method for schedule a meeting
     const scheduleMeeting = async () => {
         //1 Validation
         if (!client || !user) return;
@@ -85,8 +88,8 @@ function InterviewScheduleUI() {
                 startTime: meetingDate.getTime(),
                 status: "upcoming",
                 streamCallId: id,
-                candidateId,
-                interviewerIds,
+                candidateId,//One
+                interviewerIds,//Many
             });
 
             setOpen(false);
@@ -108,7 +111,19 @@ function InterviewScheduleUI() {
         }
     };
 
-    const addInterviewer = (interviewerId: string) => {
+    const addCandidate = (candidateId: string | null) => {
+        if (!candidateId) return;
+
+        setFormData((prev) => ({
+            ...prev,
+            candidateId: candidateId ?? "",
+        }))
+
+    }
+
+    const addInterviewer = (interviewerId: string | null) => {
+        if (!interviewerId) return;
+
         if (!formData.interviewerIds.includes(interviewerId)) {
             setFormData((prev) => ({
                 ...prev,
@@ -180,7 +195,7 @@ function InterviewScheduleUI() {
                                 <label className="text-sm font-medium">Candidate</label>
                                 <Select
                                     value={formData.candidateId}
-                                    onValueChange={(candidateId) => setFormData({ ...formData, candidateId })}
+                                    onValueChange={addCandidate}
                                 >
                                     <SelectTrigger>
                                         <SelectValue placeholder="Select candidate" />
@@ -199,6 +214,7 @@ function InterviewScheduleUI() {
                             <div className="space-y-2">
                                 <label className="text-sm font-medium">Interviewers</label>
                                 <div className="flex flex-wrap gap-2 mb-2">
+                                    {/* Show selected INTERVIEWERS */}
                                     {selectedInterviewers.map((interviewer) => (
                                         <div
                                             key={interviewer.clerkId}
@@ -211,11 +227,13 @@ function InterviewScheduleUI() {
                                                     className="hover:text-destructive transition-colors"
                                                 >
                                                     <XIcon className="h-4 w-4" />
+
                                                 </button>
                                             )}
                                         </div>
                                     ))}
                                 </div>
+                                {/* Select availble interviewers */}
                                 {availableInterviewers.length > 0 && (
                                     <Select onValueChange={addInterviewer}>
                                         <SelectTrigger>

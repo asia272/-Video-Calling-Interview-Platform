@@ -9,6 +9,7 @@ function UserInfo({ user }: { user: User }) {
         <div className="flex items-center gap-2">
             <Avatar className="h-6 w-6">
                 <AvatarImage src={user.image} />
+
                 <AvatarFallback>
                     <UserCircleIcon className="h-4 w-4" />
                 </AvatarFallback>
