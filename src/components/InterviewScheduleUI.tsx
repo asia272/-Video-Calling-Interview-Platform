@@ -163,7 +163,7 @@ function InterviewScheduleUI() {
                 {/* DIALOG */}
 
                 <Dialog open={open} onOpenChange={setOpen}>
-                    <DialogTrigger asChild>
+                    <DialogTrigger>
                         <Button size="lg">Schedule Interview</Button>
                     </DialogTrigger>
 
@@ -273,7 +273,14 @@ function InterviewScheduleUI() {
                                     <label className="text-sm font-medium">Time</label>
                                     <Select
                                         value={formData.time}
-                                        onValueChange={(time) => setFormData({ ...formData, time })}
+                                        onValueChange={(time) => {
+                                            if (!time) return;
+
+                                            setFormData({
+                                                ...formData,
+                                                time,
+                                            });
+                                        }}
                                     >
                                         <SelectTrigger>
                                             <SelectValue placeholder="Select time" />

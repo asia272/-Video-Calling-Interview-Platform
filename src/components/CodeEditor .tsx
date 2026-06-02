@@ -14,13 +14,14 @@ const CodeEditor = () => {
     const [code, setCode] = useState(selectedQuestion.starterCode[language]);
     const [output, setOutput] = useState("")
 
-    const handleQuestionChange = (questionId: string) => {
+    const handleQuestionChange = (questionId: string | null) => {
         const question = CODING_QUESTIONS.find((q) => q.id === questionId)!;
         setSelectedQuestion(question);
         setCode(question.starterCode[language]);
     };
 
-    const handleLanguageChange = (newLanguage: "javascript" | "python" | "java") => {
+    const handleLanguageChange = (newLanguage: "javascript" | "python" | "java" | null) => {
+        if (!newLanguage) return;
         setLanguage(newLanguage);
         setCode(selectedQuestion.starterCode[newLanguage]);
     };

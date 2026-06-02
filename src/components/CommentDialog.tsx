@@ -61,7 +61,7 @@ function CommentDialog({ interviewId }: { interviewId: Id<"interviews"> }) {
     if (interviewComments === undefined || users === undefined) return null;
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogTrigger asChild>
+            <DialogTrigger>
                 <Button variant="secondary" className="w-full">
                     <MessageSquareIcon className="h-4 w-4 mr-2" />
                     Add Comment
@@ -118,7 +118,11 @@ function CommentDialog({ interviewId }: { interviewId: Id<"interviews"> }) {
                         {/* RATING */}
                         <div className="space-y-2">
                             <Label>Rating</Label>
-                            <Select value={rating} onValueChange={setRating}>
+                            <Select value={rating} onValueChange={(value) => {
+                                if (value) {
+                                    setRating(value);
+                                }
+                            }}>
                                 <SelectTrigger>
                                     <SelectValue placeholder="Select rating" />
                                 </SelectTrigger>
