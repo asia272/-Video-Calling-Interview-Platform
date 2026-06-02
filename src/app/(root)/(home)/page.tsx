@@ -44,7 +44,7 @@ const Home = () => {
             : "Access your upcoming interviews and preparations"}
         </p>
       </div>
-      {true ? (
+      {isInterviewer ? (
         <>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {QUICK_ACTIONS.map((action) => (
