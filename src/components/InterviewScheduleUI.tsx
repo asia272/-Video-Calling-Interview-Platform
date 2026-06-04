@@ -27,7 +27,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { TIME_SLOTS } from "@/app/constants";
 import { api } from "../../convex/_generated/api";
 import MeetingCard from "./MeetingCard";
-// import MeetingCard from "@/components/MeetingCard";
+
 
 function InterviewScheduleUI() {
     const client = useStreamVideoClient();

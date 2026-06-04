@@ -25,13 +25,12 @@ export const syncUser = mutation({
 
 export const getUsers = query({
     handler: async (ctx) => {
-        // const identity = await ctx.auth.getUserIdentity();
+        const identity = await ctx.auth.getUserIdentity();
 
-        // console.log("IDENTITY:", identity);
+        if (!identity) throw new Error("User not found");
+
 
         const users = await ctx.db.query("users").collect();
-
-        console.log("USERS FROM DB:", users);
 
         return users;
     },
