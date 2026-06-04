@@ -58,7 +58,7 @@ const RecordingCard = ({ recording }: { recording: CallRecording; }) => {
                 </div>
             </CardContent>
             <CardFooter className="gap-2">
-                <Button className="flex-1" onClick={() => window.open(recording.url, "_blank")}>
+                <Button className="flex-1" onClick={() => window.open(recording.url, "_blank", "noopener,noreferrer")}>
                     <PlayIcon className="size-4 mr-2" />
                     Play Recording
                 </Button>
@@ -67,7 +67,7 @@ const RecordingCard = ({ recording }: { recording: CallRecording; }) => {
                 </Button>
 
             </CardFooter>
-        </Card>
+        </Card >
     )
 }
 
