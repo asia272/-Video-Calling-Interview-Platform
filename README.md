@@ -127,6 +127,42 @@ Full Stack Developer
 
 ---
 
+
+---
+
+## 🔐 Environment Variables
+
+If you want to run the project locally, create a `.env.local` file and add the required environment variables.
+
+### Clerk
+
+```env
+# Clerk Authentication
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="your_clerk_publishable_key"
+CLERK_SECRET_KEY="your_clerk_secret_key"
+```
+
+### Convex
+
+```env
+# Convex
+CONVEX_DEPLOYMENT="your_convex_deployment"
+NEXT_PUBLIC_CONVEX_URL="your_convex_url"
+NEXT_PUBLIC_CONVEX_SITE_URL="your_convex_site_url"
+```
+
+### Stream
+
+```env
+# Stream Video
+NEXT_PUBLIC_STREAM_API_KEY="your_stream_api_key"
+STREAM_SECRET_KEY="your_stream_secret_key"
+```
+
+---
+
+
+
 ## ⭐ Support
 
 If you found this project helpful, consider giving it a star on GitHub.
